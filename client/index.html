@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Javascript</title>
+    <style>
+      body {
+        height: 50vh;
+        display: grid;
+        place-items: center;
+        text-align: center;
+      }
+      h2 {
+        border: 1px dashed;
+        min-height: 20%;
+        min-width: 40%;
+        padding: 10px
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Consumiendo API</h1>
+    <h2 id="api"></h2>
+    <script>
+      const $api = document.getElementById("api"); //Elemento html
+      const url = "http://localhost:5000/api"; //URL de API
+      const options = {
+        //Necesario para una correcta conexión
+        method: "GET", // Tipo de petición
+        headers: {
+          // Encabezados
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+      };
+      fetch(url, options)
+        .then((response) => response.json())
+        .then((json) => ($api.textContent = JSON.stringify(json)))
+        .catch((err) => console.error("Error:", err));
+    </script>
+  </body>
+</html>
